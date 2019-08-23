@@ -6,7 +6,6 @@ const houses = require('./houses-data.json');
 const photos = require('./photos-data.json');
 
 console.log('MongoDB housemania will be seeded');
-//console.log(houses[0]);
 
 console.log('seeding House...');
 House.create(houses, (err, results) => {

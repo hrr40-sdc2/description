@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node server",
     "start:dev": "nodemon server",
-    "db:seed": "node server/database/seeder.js"
+    "db:seed": "node database/seeder.js"
   },
   "dependencies": {
     "express": "^4.17.1",
