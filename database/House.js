@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-//const mongo = require('./mongo.js');
-//mongoose.Promise = global.Promise;
+const mongo = require('./mongo.js');
 
 const HouseSchema = new mongoose.Schema({
   house_id: Number,
@@ -12,7 +11,7 @@ const HouseSchema = new mongoose.Schema({
       {
         beds: [
           {
-            bed_size: String
+            size: String
           }
         ]
       }
@@ -38,7 +37,10 @@ const HouseSchema = new mongoose.Schema({
 }, { toJSON: { virtuals: true } }
 );
 
-
+// IMPORTANT
+// this code above: { toJSON: { virtuals: true }
+// ensure that Mongoose will add the virtual relations when transforming into JSON
+// for response. Ex: res.status(200).json(house)
 
 /*
 - https://mongoosejs.com/docs/populate.html#populate-virtuals
