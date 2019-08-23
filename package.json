@@ -1,15 +1,17 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
-  "license": "",
+  "name": "housemania-description",
+  "version": "1.0.0",
+  "description": "The Description Application of Housemania",
+  "author": "KeitelDOG",
+  "license": "MIT",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
+    "db:seed": "node server/database/seeder.js"
   },
   "dependencies": {
+    "mongoose": "^5.6.10"
   },
   "devDependencies": {
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
