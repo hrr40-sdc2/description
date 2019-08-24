@@ -7,14 +7,12 @@ const Photo = require('./../database/Photo.js');
 const app = express();
 
 app.use(express.json());
+app.use(express.static(__dirname + '/../client/dist'));
 // serve static image files in public if necessary
 app.use(express.static(__dirname + '/../public'));
 
-app.get('/', (req, res, next) => {
-  //console.log('root endpoint GET request');
-  res.status(200).json({ success: true });
-});
 
+// API Endpoints
 app.get('/houses/:id', (req, res, next) => {
   var houseId = req.params.id;
 
