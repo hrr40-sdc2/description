@@ -1,3 +1,170 @@
-h1 {
-  color: #49A;
+body {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #484848;
+  background-color: #fff;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
+
+#overview-topbar {
+  width: 100% !important;
+  height: 80px !important;
+}
+#overview-logo {
+  margin: 23px 16px;
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  color: #FF5A5F;
+}
+
+
+/**** Search ****/
+#overview-house-search {
+  margin: 16px ;
+  display: inline-block;
+  vertical-align: top;
+  height: 48px;
+  width: 250px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px #eee;
+}
+#overview-house-search input {
+  margin: 10px ;
+  height: 26px;
+  width: 90%;
+  font-size: 16px;
+  font-weight: 800;
+  border: none;
+}
+
+
+/*** Menu ****/
+#overview-house-menu {
+  margin: 0px;
+  float: right;
+}
+#overview-house-menu ul {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  list-style-type: none;
+  height:80px;
+}
+#overview-house-menu ul li {
+  margin: 2px 10px;
+  padding: 0 10px;
+  display: inline-block;
+  line-height: 80px;
+  height: 74px;
+  font-weight: 600;
+  cursor: pointer;
+}
+#overview-house-menu ul li:hover {
+  border-bottom: 2px solid #484848;
+}
+
+/**** Banner ****/
+#overview-house-banner {
+  position: relative;
+  /*TODO: remove border when ready*/
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+#overview-house-banner .photos-container {
+  min-height: 290px;
+}
+#overview-house-banner .floating-commands {
+  position:absolute;
+  top: 10px;
+  right: 10px;
+  height: 90%;
+  width: 200px;
+  /*TODO: remove border when ready*/
+  border: 1px solid #ccc;
+}
+
+
+
+/**** House Overview ****/
+#overview-details-content {
+  margin: 0 auto;
+  padding: 0 24px;
+  max-width: 1080px !important;
+  font-size: 16px;
+}
+#overview-container {
+  max-width: 600px;
+}
+#overview-container .part-header {
+  font-weight: 600;
+}
+
+
+/* overview title */
+#overview-description .title {
+  display: inline-block;
+  width: 80%;
+}
+#overview-description .title h1 {
+  margin: 0;
+  font-size: 32px;
+}
+#overview-description .location {
+  margin: 0;
+  cursor: pointer;
+}
+#overview-description .location:hover {
+  text-decoration: underline;
+}
+#overview-description .host-photo {
+  padding: 0 5px;
+  float: right;
+  text-align: center;
+  font-size: 14px;
+  color: #767676;
+}
+#overview-description .host-photo img {
+  height: 64px;
+  width: 64px;
+  background-color:#777;
+  border-radius: 32px;
+}
+#overview-description .summary {
+  margin-top: 48px;
+  clear: both;
+  border-bottom: 1px solid #eee;
+}
+
+
+/* overview summary */
+#overview-description .summary .item {
+  margin-bottom: 24px;
+}
+#overview-description .item .icon {
+  margin-right: 22px;
+  display: inline-block;
+}
+#overview-description .item .icon img {
+  margin-top:3px;
+  height: 16px;
+  width: 16px;
+  background-color: #aaa;
+}
+#overview-description .item .details {
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+}
+#overview-description .item .part-header {
+  margin: 0 0 5px 0;
+}
+
+/* overview description */
+#overview-description .description {
+  margin-top: 24px;
+}
+
