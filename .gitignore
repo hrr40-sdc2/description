@@ -26,3 +26,4 @@ dist/
 
 # Config file with Environment settings
 config.js
+config.test.js
