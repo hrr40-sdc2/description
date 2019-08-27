@@ -1,15 +1,21 @@
 import React from 'react';
+import styled from 'styled-components';
+import sc from './styled/OverviewPart.jsx';
+
+
+const OverviewPart = sc.OverviewPart;
+const PartHeader = sc.OverviewPartHeader;
 
 const SleepingArragement = (props) => {
 
   return (
-    <section id="overview-sleeping" className="overview-part" >
-      <h2>Sleeping Arrangement</h2>
+    <OverviewPart>
+      <PartHeader>Sleeping Arrangement</PartHeader>
       <div className="bedroom">
         <div>Bedroom1</div>
         <div>2 Queen Beds</div>
       </div>
-    </section>
+    </OverviewPart>
   );
 };
 

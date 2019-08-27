@@ -1,52 +1,132 @@
 import React from 'react';
+import styled from 'styled-components';
+import sc from './styled/OverviewPart.jsx';
+
+
+const OverviewPart = sc.OverviewPart;
+const PartHeader = sc.OverviewPartHeader;
+
+const TitleContainer = styled.section`
+  display: inline-block;
+  width: 80%;
+`;
+
+const TitleHeader = styled.h1`
+  margin: 0;
+  font-size: 32px;
+`;
+
+const Location = styled.span`
+  margin: 0;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const HostContainer = styled.div`
+  padding: 0 5px;
+  float: right;
+  text-align: center;
+  font-size: 14px;
+  color: #767676;
+`;
+
+const HostPhoto = styled.img`
+  height: 64px;
+  width: 64px;
+  background-color:#777;
+  border-radius: 32px;
+`;
+
+const Summary = styled.div`
+  margin-top: 48px;
+  clear: both;
+  border-bottom: 1px solid #eee;
+`;
+
+const SummaryItem = styled.div`
+  margin-bottom: 24px;
+`;
+
+const ItemIconContainer = styled.div`
+  margin-right: 22px;
+  display: inline-block;
+`;
+
+const ItemIcon = styled.img`
+  margin-top:3px;
+  height: 16px;
+  width: 16px;
+  background-color: #aaa;
+`;
+
+const ItemDetails = styled.div`
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+`;
+
+const DescriptionContainer = styled.div`
+  margin-top: 24px;
+`;
+
+
 
 const Description = (props) => {
 
   return (
-    <section id="overview-description" className="overview-part" >
-      <div className="title">
-        <h1>House Title Type and Category</h1>
-        <div><span className="location">Location</span></div>
-      </div>
-      <div className="host-photo">
-        <img src="/fake-image.jpg" />
-        <div>Keitel</div>
-      </div>
-      <div className="summary">
-        <div className="item">
-          <div className="icon" >
-            <img src="/fake-icon.png" />
-          </div>
-          <div className="details" >
-            <h2 className="part-header" >Private Room</h2>
-            Private Room summary
-          </div>
-        </div>
-        <div className="item">
-          <div className="icon" >
-            <img src="/fake-icon.png" />
-          </div>
-          <div className="details">
-            <h2 className="part-header" >Superhost</h2>
-            Super Host Services
-          </div>
-        </div>
-        <div className="item">
-          <div className="icon" >
-            <img src="/fake-icon.png" />
-          </div>
-          <div className="details">
-            <h2 className="part-header" >Check-in Experience</h2>
-            Users Rating
-          </div>
-        </div>
-      </div>
+    <OverviewPart>
+      <TitleContainer className="title">
+        <TitleHeader>House Title Type and Category</TitleHeader>
+        <div><Location className="location">Location</Location></div>
+      </TitleContainer>
 
-      <div className="description">
+      <HostContainer className="host-photo">
+        <HostPhoto src="/fake-image.jpg" />
+        <div>Keitel</div>
+      </HostContainer>
+
+      <Summary>
+
+        <SummaryItem>
+          <ItemIconContainer>
+            <ItemIcon src="/fake-icon.png" />
+          </ItemIconContainer>
+          <ItemDetails>
+            <PartHeader>Private Room</PartHeader>
+            Private Room summary
+          </ItemDetails>
+        </SummaryItem>
+
+        <SummaryItem>
+          <ItemIconContainer>
+            <ItemIcon src="/fake-icon.png" />
+          </ItemIconContainer>
+          <ItemDetails>
+            <PartHeader>Superhost</PartHeader>
+            Super Host Services
+          </ItemDetails>
+        </SummaryItem>
+
+        <SummaryItem>
+          <ItemIconContainer>
+            <ItemIcon src="/fake-icon.png" />
+          </ItemIconContainer>
+          <ItemDetails>
+            <PartHeader>Check-in Experience</PartHeader>
+            Users Rating
+          </ItemDetails>
+        </SummaryItem>
+
+      </Summary>
+
+      <DescriptionContainer>
         Main Description A room w/ a queen bed & a loft with another queen bed in a quiet nbrhd. Close to both the 25 and 40 freeway. A block from restaurants, supermarket and bus stop. Enjoy staying at this urban homestead with chickens, rabbits & garden. Late Arrivals ok.
-      </div>
-      <div className="description">
-        <h2 className="part-header" >The Space</h2>
+      </DescriptionContainer>
+      <DescriptionContainer>
+        <PartHeader>The Space</PartHeader>
         House Space Description We are just minutes away from interstate 25 and 40 in a quite and safe neighborhood.
 The room is attached to our home, however it has a private entrance. this room has AIR CONDITIONING, the shared bathroom is centrally located the house.
 It has a tall ceiling with a loft, 3 sky lights and a potbelly stove. A coffee maker and little fridge are provided.
@@ -68,16 +148,16 @@ a block away from restaurants, bus stop, french bakery (baguettes like you get i
 18 miles (30 min) to Double Eagle II Airport
 
 If you like to stay longer then a couple of nights please contact us first so we can connect and see if this would work for all of us.
-      </div>
-      <div className="description">
-        <h2 className="part-header" >Guest Access</h2>
+      </DescriptionContainer>
+      <DescriptionContainer>
+        <PartHeader>Guest Access</PartHeader>
         Guest Access Description
-      </div>
-      <div className="description">
-        <h2 className="part-header" >Other things to note</h2>
+      </DescriptionContainer>
+      <DescriptionContainer>
+        <PartHeader>Other things to note</PartHeader>
         Other things Description
-      </div>
-    </section>
+      </DescriptionContainer>
+    </OverviewPart>
   );
 };
 

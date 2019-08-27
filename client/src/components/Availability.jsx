@@ -1,4 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
+import sc from './styled/OverviewPart.jsx';
+
+
+const OverviewPart = sc.OverviewPart;
+const PartHeader = sc.OverviewPartHeader;
 
 class Availability extends React.Component {
 
@@ -8,15 +14,15 @@ class Availability extends React.Component {
 
   render() {
     return (
-      <section id="overview-availability" className="overview-part" >
-        <h2>Availability</h2>
+      <OverviewPart>
+        <PartHeader>Availability</PartHeader>
         <div className="overview-calendar-month">
-          <h3>September 2019</h3>
+          <span>September 2019</span>
         </div>
         <div className="overview-calendar-month">
-          <h3>October 2019</h3>
+          <span>October 2019</span>
         </div>
-      </section>
+      </OverviewPart>
     );
   }
 }
