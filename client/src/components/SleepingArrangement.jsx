@@ -56,7 +56,7 @@ const SleepingArragement = (props) => {
 
       return (
         <Bedroom key={'sleeping-arrangement-' + ind}>
-          <BedroomNumber>{'bedroom' + ind}</BedroomNumber>
+          <BedroomNumber>{'bedroom' + (ind + 1)}</BedroomNumber>
           <div>{beds.king > 0 ? beds.king + ' king beds' : '' }</div>
           <div>{beds.queen > 0 ? beds.queen + ' queen beds' : '' }</div>
           <div>{beds.normal > 0 ? beds.normal + ' normal beds' : '' }</div>

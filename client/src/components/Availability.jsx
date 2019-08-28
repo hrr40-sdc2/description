@@ -36,10 +36,10 @@ class Availability extends React.Component {
 
     return dates.map((date, ind) => {
       return (
-        <DateAvailable key={'availability-' + ind}>{date + ''}</DateAvailable>
+        <DateAvailable key={'availability-' + ind}>{date}</DateAvailable>
       );
     });
-  };
+  }
 
   render() {
     return (
