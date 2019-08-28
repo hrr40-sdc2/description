@@ -15,12 +15,13 @@ const NavList = styled.ul`
 `;
 
 const NavItem = styled.li`
-  margin: 2px 10px;
+  margin: 2px 7px;
   padding: 0 10px;
   display: inline-block;
   line-height: 80px;
   height: 74px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
 
   &:hover {
@@ -35,8 +36,8 @@ const Menu = (props) => {
       <NavList>
         <NavItem>Become a Host</NavItem>
         <NavItem>Help</NavItem>
-        <NavItem>Signup</NavItem>
-        <NavItem>Login</NavItem>
+        <NavItem>Sign up</NavItem>
+        <NavItem>Log in</NavItem>
       </NavList>
     </Navigation>
   );
