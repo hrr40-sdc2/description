@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import $ from 'jquery';
 import Logo from './icons/Logo.jsx';
 import Search from './Search.jsx';
 import Menu from './Menu.jsx';
@@ -19,6 +20,7 @@ const HouseContent = styled.div`
   background-color: #fff;
   margin: 0;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 `;
 
 const TopBar = styled.div`
@@ -37,7 +39,7 @@ const LogoContainer = styled.div`
 const HouseDetailsContent = styled.div`
   margin: 0 auto;
   padding: 0 24px;
-  max-width: 1080px !important;
+  max-width: 1032px !important;
   font-size: 16px;
 `;
 
@@ -49,6 +51,33 @@ class App extends React.Component {
 
   constructor() {
     super();
+
+    this.state = {
+      house: {}
+    };
+  }
+
+
+  componentDidMount() {
+    this.loadHouse(1, (house) => {
+      console.log('house', house);
+      this.setState({
+        house
+      });
+    });
+  }
+
+  loadHouse(id, callback) {
+    $.ajax({
+      method: 'GET',
+      url: '/houses/' + id,
+      contentType: 'application/json',
+      cache: false,
+      success: callback,
+      error: (err) => {
+        console.log('error fetching the house', err);
+      }
+    });
   }
 
   render() {
@@ -62,14 +91,14 @@ class App extends React.Component {
             <Search />
             <Menu />
           </TopBar>
-          <Banner />
+          <Banner photos={this.state.house.photos} />
         </header>
         <HouseDetailsContent id="overview-details-content">
           <OverviewContainer id="overview-container">
-            <Description />
-            <Amenities />
-            <SleepingArrangement />
-            <Availability />
+            <Description house={this.state.house} />
+            <Amenities amenities={this.state.house.amenities} />
+            <SleepingArrangement private_room={this.state.house.private_room} />
+            <Availability availability={this.state.house.availability} />
           </OverviewContainer>
         </HouseDetailsContent>
       </HouseContent>

@@ -57,8 +57,8 @@ const ItemIconContainer = styled.div`
 
 const ItemIcon = styled.img`
   margin-top:3px;
-  height: 16px;
-  width: 16px;
+  height: 12px;
+  width: 12px;
   background-color: #aaa;
 `;
 
@@ -66,6 +66,11 @@ const ItemDetails = styled.div`
   margin: 0;
   display: inline-block;
   vertical-align: top;
+  max-width: 90%;
+`;
+
+const RoomUnit = styled.span`
+  margin-right: 20px;
 `;
 
 const DescriptionContainer = styled.div`
@@ -76,16 +81,43 @@ const DescriptionContainer = styled.div`
 
 const Description = (props) => {
 
+  let room = {
+    guest: 0,
+    bedroom: 0,
+    bed: 0,
+    bath: 0
+  };
+
+  const loadRoomUnitInfo = () => {
+    let units = props.house.private_room;
+
+    if (units) {
+      room.guest = units.guest;
+      room.bath = units.bath;
+      if (units.bedrooms.length) {
+        room.bedroom = units.bedrooms.length;
+
+        room.bed = units.bedrooms.reduce((acc, bedroom) => {
+          return acc + bedroom.beds.length;
+        }, 0);
+      }
+    }
+
+    console.log('loaded room', room);
+  };
+
+  loadRoomUnitInfo();
+
   return (
     <OverviewPart>
       <TitleContainer className="title">
-        <TitleHeader>House Title Type and Category</TitleHeader>
-        <div><Location className="location">Location</Location></div>
+        <TitleHeader>{props.house.title}</TitleHeader>
+        <div><Location className="location">{props.house.location}</Location></div>
       </TitleContainer>
 
       <HostContainer className="host-photo">
-        <HostPhoto src="/fake-image.jpg" />
-        <div>Keitel</div>
+        <HostPhoto src={props.house.super_host_photo} />
+        <div>{props.house.super_host_name}</div>
       </HostContainer>
 
       <Summary>
@@ -95,8 +127,11 @@ const Description = (props) => {
             <ItemIcon src="/fake-icon.png" />
           </ItemIconContainer>
           <ItemDetails>
-            <PartHeader>Private Room</PartHeader>
-            Private Room summary
+            <PartHeader>Private room in house</PartHeader>
+            <RoomUnit>{room.guest} guests</RoomUnit>
+            <RoomUnit>{room.bedroom} bedrooms</RoomUnit>
+            <RoomUnit>{room.bed} beds</RoomUnit>
+            <RoomUnit>{room.bath} baths</RoomUnit>
           </ItemDetails>
         </SummaryItem>
 
@@ -105,8 +140,8 @@ const Description = (props) => {
             <ItemIcon src="/fake-icon.png" />
           </ItemIconContainer>
           <ItemDetails>
-            <PartHeader>Superhost</PartHeader>
-            Super Host Services
+            <PartHeader>Great check-in experience</PartHeader>
+            {props.house.rating}% of recent guests gave the check-in process a 5-star rating.
           </ItemDetails>
         </SummaryItem>
 
@@ -115,47 +150,27 @@ const Description = (props) => {
             <ItemIcon src="/fake-icon.png" />
           </ItemIconContainer>
           <ItemDetails>
-            <PartHeader>Check-in Experience</PartHeader>
-            Users Rating
+            <PartHeader>{props.house.super_host_name} is a Superhost</PartHeader>
+            Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.
           </ItemDetails>
         </SummaryItem>
 
       </Summary>
 
       <DescriptionContainer>
-        Main Description A room w/ a queen bed & a loft with another queen bed in a quiet nbrhd. Close to both the 25 and 40 freeway. A block from restaurants, supermarket and bus stop. Enjoy staying at this urban homestead with chickens, rabbits & garden. Late Arrivals ok.
+        {props.house.desc}
       </DescriptionContainer>
       <DescriptionContainer>
         <PartHeader>The Space</PartHeader>
-        House Space Description We are just minutes away from interstate 25 and 40 in a quite and safe neighborhood.
-The room is attached to our home, however it has a private entrance. this room has AIR CONDITIONING, the shared bathroom is centrally located the house.
-It has a tall ceiling with a loft, 3 sky lights and a potbelly stove. A coffee maker and little fridge are provided.
-There are some steps up and down.
-There are 2 queen size beds; one on the loft. You need to use a ladder to get to it. We can add a play pen (pack and play) to the room.
-Pets allowed but check in first to see if it works for other guests. some have allergies.
-we share the kitchen and bathroom with you.
-The house doesn't have AC just a swamp cooler. There are young children in the house and a visiting cat.
-location:
-1.3 miles (4 min) to interstate 25 and 40
-3 miles (10 min) to Old Town
-5 miles (13 min) to UNM (university)
-8 miles (15 min) to Sunport Airport
-a block away from restaurants, bus stop, french bakery (baguettes like you get in France), drugstore, supermarket and the cheapest gas station in town.
-
-6 miles (15 min) to Balloon Fiesta Park
-13 miles (25 min) to the Sandia Tramway gives access to ski lifts or
-31 miles (45 min) driving to the ski lifts at Sandia Crest
-18 miles (30 min) to Double Eagle II Airport
-
-If you like to stay longer then a couple of nights please contact us first so we can connect and see if this would work for all of us.
+        {props.house.space_desc}
       </DescriptionContainer>
       <DescriptionContainer>
         <PartHeader>Guest Access</PartHeader>
-        Guest Access Description
+        {props.house.guest_desc}
       </DescriptionContainer>
       <DescriptionContainer>
         <PartHeader>Other things to note</PartHeader>
-        Other things Description
+        {props.house.other_desc}
       </DescriptionContainer>
     </OverviewPart>
   );
