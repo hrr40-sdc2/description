@@ -36,10 +36,11 @@ jobs:
 
       - run: ps -ax | grep mongo
 
-      - run:
-          name: Setup Database
-          command:
-            yarn db:seed
+      # seed mongo DB
+      - run: yarn db:seed
+
+      # start node server
+      - run: yarn start
 
       # run tests!
-      - run: yarn start && yarn test
+      - run: yarn test
