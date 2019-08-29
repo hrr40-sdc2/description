@@ -12,7 +12,14 @@
     "start:dev": "nodemon server",
     "db:seed": "node database/seeder.js",
     "react-dev": "webpack -d --watch",
-    "test-server": "mocha --require @babel/register 'test/**/**.test.js' --bail"
+    "test-server": "mocha --require @babel/register 'test/**/**.test.js' --bail",
+    "test:client": "jest --verbose ./spec",
+    "test:client:coverage": "jest --verbose --coverage ./spec"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -27,11 +34,14 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.5.5",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
     "chai": "^4.2.0",
     "css-loader": "^3.2.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.4.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
