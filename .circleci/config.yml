@@ -34,11 +34,12 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run: ps -ax | grep mongo
+
       - run:
-          name: Setup Database and Server
+          name: Setup Database
           command:
             yarn db:seed
-            ps -ax | grep mongo
 
       # run tests!
       - run: yarn start && yarn test
