@@ -1,5 +1,4 @@
 const express = require('express');
-const config = require('./../config/config.js');
 
 const House = require('./../database/House.js');
 const Photo = require('./../database/Photo.js');
@@ -39,7 +38,8 @@ app.get('/photos/houses/:id', (req, res, next) => {
   });
 });
 
+const port = process.env.PORT || 3000;
 
-app.listen(config.EXPRESS_PORT, () => {
-  console.log(`Housemania Server is running at port ${config.EXPRESS_PORT}`);
+app.listen(port, () => {
+  console.log(`Housemania Server is running at port ${port}`);
 });

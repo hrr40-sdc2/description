@@ -33,5 +33,10 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run:
+          name: Setup Database and Server
+          command:
+            yarn db:seed
+
       # run tests!
       - run: yarn start && yarn test

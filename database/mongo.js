@@ -1,3 +1,3 @@
 const mongoose = require('mongoose');
-const config = require('./../config/config.js');
-module.exports = mongoose.connect(config.MONGO_URI);
+const mongoUri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/house';
+module.exports = mongoose.connect(mongoUri);
