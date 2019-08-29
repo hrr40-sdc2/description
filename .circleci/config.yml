@@ -13,6 +13,7 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
+      - image: circleci/mongo:4.0.3
 
     working_directory: ~/repo
 
@@ -33,5 +34,16 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run: ps -ax | grep mongo
+
+      # seed mongo DB
+      - run: yarn db:seed
+
+      # start node server
+      - run:
+          name: Start Node Server
+          command: yarn start
+          background: true
+
       # run tests!
-      - run: yarn start && yarn test
+      - run: yarn test
