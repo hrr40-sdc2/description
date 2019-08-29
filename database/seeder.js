@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const mongo = require('./mongo.js');
 const House = require('./House.js');

@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 
 const House = require('./../database/House.js');
 const Photo = require('./../database/Photo.js');
