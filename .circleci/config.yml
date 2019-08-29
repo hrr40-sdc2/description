@@ -34,8 +34,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: ps -ax | grep mongo
-
       # seed mongo DB
       - run: yarn db:seed
 

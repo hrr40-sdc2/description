@@ -24,9 +24,8 @@ coverage
 build/
 dist/
 
-# Config file with Environment settings
-config.js
-config.test.js
+# Environment settings
+.env
 
 # Photos in public directory because we won't need them in production
 public/photos
