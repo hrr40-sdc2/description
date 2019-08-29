@@ -12,6 +12,7 @@
     "start:dev": "nodemon server",
     "db:seed": "node database/seeder.js",
     "react-dev": "webpack -d --watch",
+    "test": "jest --verbose",
     "test-server": "mocha --require @babel/register 'test/**/**.test.js' --bail",
     "test:client": "jest --verbose ./spec",
     "test:client:coverage": "jest --verbose --coverage ./spec"
