@@ -40,7 +40,10 @@ jobs:
       - run: yarn db:seed
 
       # start node server
-      - run: yarn start
+      - run:
+          name: Start Node Server
+          command: yarn start
+          background: true
 
       # run tests!
       - run: yarn test
