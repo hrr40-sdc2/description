@@ -1,0 +1,12 @@
+{
+  "env": {
+    "test": {
+      "presets": ["@babel/preset-react", "@babel/preset-env"],
+      "plugins": ["transform-export-extensions"],
+      "only": [
+        "./**/*.jsx",
+        "node_modules/jest-runtime"
+      ]
+    }
+  }
+}

@@ -79,7 +79,7 @@ const DescriptionContainer = styled.div`
 
 
 
-const Description = (props) => {
+const Description = ({ house = {}}) => {
 
   let room = {
     guest: 0,
@@ -89,7 +89,7 @@ const Description = (props) => {
   };
 
   const loadRoomUnitInfo = () => {
-    let units = props.house.private_room;
+    let units = house.private_room;
 
     if (units) {
       room.guest = units.guest;
@@ -111,13 +111,13 @@ const Description = (props) => {
   return (
     <OverviewPart>
       <TitleContainer className="title">
-        <TitleHeader>{props.house.title}</TitleHeader>
-        <div><Location className="location">{props.house.location}</Location></div>
+        <TitleHeader>{house.title}</TitleHeader>
+        <div><Location className="location">{house.location}</Location></div>
       </TitleContainer>
 
       <HostContainer className="host-photo">
-        <HostPhoto src={props.house.super_host_photo} />
-        <div>{props.house.super_host_name}</div>
+        <HostPhoto src={house.super_host_photo} />
+        <div>{house.super_host_name}</div>
       </HostContainer>
 
       <Summary>
@@ -141,7 +141,7 @@ const Description = (props) => {
           </ItemIconContainer>
           <ItemDetails>
             <PartHeader>Great check-in experience</PartHeader>
-            {props.house.rating}% of recent guests gave the check-in process a 5-star rating.
+            {house.rating}% of recent guests gave the check-in process a 5-star rating.
           </ItemDetails>
         </SummaryItem>
 
@@ -150,7 +150,7 @@ const Description = (props) => {
             <ItemIcon src="/fake-icon.png" />
           </ItemIconContainer>
           <ItemDetails>
-            <PartHeader>{props.house.super_host_name} is a Superhost</PartHeader>
+            <PartHeader>{house.super_host_name} is a Superhost</PartHeader>
             Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.
           </ItemDetails>
         </SummaryItem>
@@ -158,19 +158,19 @@ const Description = (props) => {
       </Summary>
 
       <DescriptionContainer>
-        {props.house.desc}
+        {house.desc}
       </DescriptionContainer>
       <DescriptionContainer>
         <PartHeader>The Space</PartHeader>
-        {props.house.space_desc}
+        {house.space_desc}
       </DescriptionContainer>
       <DescriptionContainer>
         <PartHeader>Guest Access</PartHeader>
-        {props.house.guest_desc}
+        {house.guest_desc}
       </DescriptionContainer>
       <DescriptionContainer>
         <PartHeader>Other things to note</PartHeader>
-        {props.house.other_desc}
+        {house.other_desc}
       </DescriptionContainer>
     </OverviewPart>
   );
