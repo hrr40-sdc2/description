@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Lens from './icons/Lens.jsx';
 import SearchResults from './SearchResults.jsx';
+import $ from 'jquery';
+import _ from 'underscore';
 
 const SearchContainer = styled.div`
   margin: 16px 16px 16px 0;
@@ -10,6 +12,7 @@ const SearchContainer = styled.div`
   position: relative;
   vertical-align: top;
   height: 48px;
+  width: 36%;
   border: 1px solid #eee;
   border-radius: 5px;
   box-shadow: 0px 2px 4px #eee;
@@ -28,6 +31,7 @@ const SearchInput = styled.input`
   display:inline-block;
   vertical-align: top;
   height: 26px;
+  width: 80%;
   font-size: 17px;
   font-weight: 600;
   border: none;
@@ -39,33 +43,70 @@ class Search extends React.Component {
   constructor() {
     super();
 
+    this.qry = '';
+
     this.state = {
       houses: []
     };
-
-    this.results = [];
   }
 
-  componentDidMount() {
-    console.log('search mounted');
+  loadHouses(qry) {
+    this.searchHouses(qry, (data) => {
+      // if by the time results return, the query has changed to less than 2 chars
+      if (this.qry.length < 2) {
+        this.setState({
+          houses: []
+        });
+
+      } else {
+        this.setState({
+          houses: data
+        });
+      }
+    });
+  }
+
+  searchHouses(qry, callback) {
+    $.ajax({
+      method: 'GET',
+      url: '/houses/search/' + qry,
+      contentType: 'application/json',
+      cache: false,
+      success: callback,
+      error: (err) => {
+        console.log('error searching for houses', err);
+      }
+    });
   }
 
   handleSearch(event) {
     const qry = event.target.value;
-    console.log(event.target);
-    console.log(qry);
+    this.qry = qry;
 
-    this.results.push({ title: 'House Description ' + qry.length });
+    // skip search for qry less than 2 chars
+    if (qry.length < 2) {
+      this.setState({
+        houses: []
+      });
+      return;
+    }
 
-    this.setState({
-      houses: this.results
-    });
+    var debounced = _.debounce(
+      this.loadHouses.bind(this, qry)
+      , 500);
+
+    debounced();
+  }
+
+  handleEnterSearch(event) {
+    $('#overview-house-search').animate({ width: '45%' });
   }
 
   handleQuitSearch(event) {
-    this.results = [];
+    console.log('quit search');
+    $('#overview-house-search').animate({ width: '35%' });
     this.setState({
-      houses: this.results
+      houses: []
     });
   }
 
@@ -77,6 +118,7 @@ class Search extends React.Component {
         </Icon>
         <SearchInput name="overview-qry" placeholder="Search"
           onChange={this.handleSearch.bind(this)} type="text"
+          onFocus={this.handleEnterSearch.bind(this)}
           onBlur={this.handleQuitSearch.bind(this)} />
 
         <SearchResults houses={this.state.houses}/>
