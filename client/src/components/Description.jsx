@@ -59,7 +59,6 @@ const ItemIcon = styled.img`
   margin-top:3px;
   height: 12px;
   width: 12px;
-  background-color: #aaa;
 `;
 
 const ItemDetails = styled.div`
@@ -124,7 +123,7 @@ const Description = ({ house = {}}) => {
 
         <SummaryItem>
           <ItemIconContainer>
-            <ItemIcon src="/fake-icon.png" />
+            <ItemIcon src="/icons/house-black-icon.png" />
           </ItemIconContainer>
           <ItemDetails>
             <PartHeader>Private room in house</PartHeader>
@@ -137,7 +136,7 @@ const Description = ({ house = {}}) => {
 
         <SummaryItem>
           <ItemIconContainer>
-            <ItemIcon src="/fake-icon.png" />
+            <ItemIcon src="/icons/key-black-icon.png" />
           </ItemIconContainer>
           <ItemDetails>
             <PartHeader>Great check-in experience</PartHeader>
@@ -147,7 +146,7 @@ const Description = ({ house = {}}) => {
 
         <SummaryItem>
           <ItemIconContainer>
-            <ItemIcon src="/fake-icon.png" />
+            <ItemIcon src="/icons/medal-black-icon.png" />
           </ItemIconContainer>
           <ItemDetails>
             <PartHeader>{house.super_host_name} is a Superhost</PartHeader>

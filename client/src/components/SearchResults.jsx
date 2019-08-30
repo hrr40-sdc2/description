@@ -32,12 +32,11 @@ const SearchResults = ({ houses = [] }) => {
     }
   `;
 
-  const Icon = styled.svg`
+  const Icon = styled.img`
     margin: 6px 12px 0 0;
     float: left;
     height: 19px;
     width: 19px;
-    fill: currentcolor;
   `;
 
   const handleHouseClick = (houseId, event) => {
@@ -55,9 +54,7 @@ const SearchResults = ({ houses = [] }) => {
       return (
         <House key={house.house_id + '-summary-' + ind} title={house.title}
           onClick={handleHouseClick.bind(this, house.house_id)}>
-          <Icon viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false" >
-            <Parking />
-          </Icon>
+          <Icon src="/icons/house-black-icon.png" />
           {title}
         </House>
       );
