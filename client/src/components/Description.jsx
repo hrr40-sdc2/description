@@ -102,7 +102,7 @@ const Description = ({ house = {}}) => {
       }
     }
 
-    console.log('loaded room', room);
+    //console.log('loaded room', room);
   };
 
   loadRoomUnitInfo();

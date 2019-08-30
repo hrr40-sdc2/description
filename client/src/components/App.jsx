@@ -65,7 +65,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.loadHouse(1, (house) => {
-      console.log('house', house);
+      //console.log('house', house);
       this.setState({
         house
       });

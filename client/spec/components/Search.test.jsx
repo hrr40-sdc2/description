@@ -8,8 +8,17 @@ configure({ adapter: new Adapter() });
 describe('Search Component', () => {
 
   test('renders', () => {
-    const wrapper = shallow(<Search />);
+    const wrapper = mount(<Search />);
     expect(wrapper.exists()).toBe(true);
+  });
+
+  test('Search input should be functional', () => {
+    const wrapper = mount(<Search />);
+    wrapper.find('input').simulate('change', {
+      target: { value: 'Dui' }
+    });
+
+    expect(wrapper.find('input').props().name).toEqual('overview-qry');
   });
 
 });

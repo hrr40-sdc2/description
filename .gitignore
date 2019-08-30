@@ -29,3 +29,6 @@ dist/
 
 # Photos in public directory because we won't need them in production
 public/photos
+
+# Test env directories
+__snapshots__
