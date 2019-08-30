@@ -16,7 +16,6 @@ describe('House Mania API Testing', function() {
   });
 
   it('Should retrieve all the photos of house with ID 1 from the DB', function(done) {
-    console.log('house 1 photos fetched');
     request('http://127.0.0.1:3000/photos/houses/1', function(error, response, body) {
       if (error) {
         console.log('error house photos', error);
@@ -24,6 +23,20 @@ describe('House Mania API Testing', function() {
       var photos = JSON.parse(body);
       expect(Array.isArray(photos)).to.be.true;
       expect(photos[0].house_id).to.equal(1);
+      done();
+    });
+  });
+
+  it('Should retrieve houses whose title and location match the search query', function(done) {
+    request('http://127.0.0.1:3000/houses/search/consectetuer', function(error, response, body) {
+      if (error) {
+        console.log('error search house', error);
+      }
+      var houses = JSON.parse(body);
+      expect(Array.isArray(houses)).to.be.true;
+      expect(houses.length).to.equal(2);
+      expect(houses[0].house_id).to.equal(74);
+      expect(houses[1].house_id).to.equal(99);
       done();
     });
   });

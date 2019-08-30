@@ -12,10 +12,10 @@
     "start:dev": "nodemon server",
     "db:seed": "node database/seeder.js",
     "react-dev": "webpack -d --watch",
-    "test": "jest --verbose",
-    "test-server": "mocha --require @babel/register 'test/**/**.test.js' --bail",
+    "test": "jest --verbose ./spec",
+    "test:server": "mocha --require @babel/register '**/spec/**/**.test.js' --exit",
     "test:client": "jest --verbose ./spec",
-    "test:client:coverage": "jest --verbose --coverage ./spec"
+    "test:client:coverage": "jest --verbose --coverage ./client/spec"
   },
   "jest": {
     "snapshotSerializers": [

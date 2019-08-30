@@ -39,6 +39,19 @@ app.get('/photos/houses/:id', (req, res, next) => {
   });
 });
 
+app.get('/houses/search/:qry', (req, res, next) => {
+  var qry = req.params.qry;
+
+  House.find({ $or: [ { title: { $regex: qry, $options: 'i' } }, { location: { $regex: qry, $options: 'i' } } ] }, (err, houses) => {
+    if (err) {
+      console.log('error searching house', err);
+      res.status(400).json({ success: false, message: 'Could not search House from our Database' });
+    } else {
+      res.status(200).json(houses);
+    }
+  }).limit(10);
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {

@@ -43,5 +43,8 @@ jobs:
           command: yarn start
           background: true
 
-      # run tests!
-      - run: yarn test
+      # run server tests!
+      - run: yarn test:server
+
+      # run client tests with coverage information!
+      - run: yarn test:client:coverage
