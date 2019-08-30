@@ -29,11 +29,16 @@ const TopBar = styled.div`
 `;
 
 const LogoContainer = styled.div`
-  margin: 23px 16px;
+  margin: 23px 23px;
   display: inline-block;
   width: 34px;
   height: 34px;
   color: #FF5A5F;
+`;
+
+const Icon = styled.svg`
+  display: block;
+  fill: currentcolor;
 `;
 
 const HouseDetailsContent = styled.div`
@@ -60,7 +65,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.loadHouse(1, (house) => {
-      console.log('house', house);
+      //console.log('house', house);
       this.setState({
         house
       });
@@ -86,7 +91,9 @@ class App extends React.Component {
         <header>
           <TopBar>
             <LogoContainer>
-              <Logo />
+              <Icon viewBox="0 0 1000 1000" role="presentation" aria-hidden="true" focusable="false" >
+                <Logo />
+              </Icon>
             </LogoContainer>
             <Search />
             <Menu />
