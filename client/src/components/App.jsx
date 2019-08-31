@@ -1,9 +1,11 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import $ from 'jquery';
 import Logo from './icons/Logo.jsx';
 import Search from './Search.jsx';
 import Menu from './Menu.jsx';
+import FloatingTopBar from './FloatingTopBar.jsx';
 import Banner from './Banner.jsx';
 import Description from './Description.jsx';
 import Amenities from './Amenities.jsx';
@@ -58,7 +60,8 @@ class App extends React.Component {
     super();
 
     this.state = {
-      house: {}
+      house: {},
+      floatTopBar: false
     };
   }
 
@@ -70,6 +73,17 @@ class App extends React.Component {
         house
       });
     });
+
+    //const list = ReactDOM.findDOMNode(this.refs.list);
+    //list.addEventListener('scroll', this.handleScroll);
+
+    $(window).on('scroll', this.handleScroll.bind(this, window));
+  }
+
+  componentWillUnmount() {
+    //const list = ReactDOM.findDOMNode(this.refs.list);
+    //list.removeEventListener('scroll', this.handleScroll);
+    $(window).off('scroll');
   }
 
   loadHouse(id, callback) {
@@ -85,9 +99,26 @@ class App extends React.Component {
     });
   }
 
+  handleScroll(window) {
+    var currentScroll = $(window).scrollTop();
+    //console.log('window scrolled', currentScroll);
+    if (currentScroll >= 373) {
+      // update state to display floating top bar
+      if (!this.state.floatTopBar) {
+        this.setState({ floatTopBar: true });
+      }
+
+    } else {
+      if (this.state.floatTopBar) {
+        this.setState({ floatTopBar: false });
+      }
+    }
+  }
+
   render() {
     return (
-      <HouseContent id="overview-house-content">
+      <HouseContent id="overview-house-content" >
+        <FloatingTopBar show={this.state.floatTopBar} />
         <header>
           <TopBar>
             <LogoContainer>
