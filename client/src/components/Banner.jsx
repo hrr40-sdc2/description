@@ -97,11 +97,11 @@ const Banner = (props) => {
   // TODO: Change this to Amazon S3 Storage path later
   let path = '/photos/house/';
 
-  let photo1 = '/default.jpg';
-  let photo2 = '/default.jpg';
-  let photo3 = '/default.jpg';
-  let photo4 = '/default.jpg';
-  let photo5 = '/default.jpg';
+  let photo1 = 'default.jpg';
+  let photo2 = 'default.jpg';
+  let photo3 = 'default.jpg';
+  let photo4 = 'default.jpg';
+  let photo5 = 'default.jpg';
 
   const loadPhotos = () => {
     if (!props.photos) {

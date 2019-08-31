@@ -22,7 +22,7 @@ const NavItem = styled.li`
   display: inline-block;
   color: #008489;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
 
   &:hover {
@@ -73,10 +73,10 @@ const FloatingTopBar = (props) => {
     <TopBarContainer id="overview-floating-top-bar" >
       <Navigation id="overview-section-menu" >
         <NavList>
-          <NavItem>Overview  ·</NavItem>
-          <NavItem>Reviews  ·</NavItem>
-          <NavItem>The Host  ·</NavItem>
-          <NavItem>Location  ·</NavItem>
+          <NavItem style={{ color: '#484848' }}>Overview ·</NavItem>
+          <NavItem>Reviews ·</NavItem>
+          <NavItem>The Host ·</NavItem>
+          <NavItem>Location ·</NavItem>
           <NavItem>Policies</NavItem>
         </NavList>
 

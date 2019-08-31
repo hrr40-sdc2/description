@@ -5,6 +5,7 @@ import Wifi from './icons/Wifi.jsx';
 import Hangers from './icons/Hangers.jsx';
 import Kitchen from './icons/Kitchen.jsx';
 import Parking from './icons/Parking.jsx';
+import Amenity from './icons/Amenity.jsx';
 
 
 const OverviewPart = sc.OverviewPart;
@@ -57,9 +58,8 @@ const Amenities = (props) => {
     } else if (item === 'Free parking on premises') {
       return (<Parking />);
     } else {
-      // by default, use Parking
       // TODO: change to a default amenities item
-      return (<Parking />);
+      return (<Amenity />);
     }
   };
 
