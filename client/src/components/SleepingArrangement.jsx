@@ -72,7 +72,7 @@ const SleepingArragement = (props) => {
     // Add King bed
     for (let i = 0; i < beds.king; i++) {
       icons.push(
-        <KingIcon viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false" >
+        <KingIcon key={'king-bed-' + i} viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false" >
           <Bed />
         </KingIcon>
       );
@@ -81,7 +81,7 @@ const SleepingArragement = (props) => {
     // Add Queen bed
     for (let i = 0; i < beds.queen; i++) {
       icons.push(
-        <QueenIcon viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false" >
+        <QueenIcon key={'queen-bed-' + i} viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false" >
           <Bed />
         </QueenIcon>
       );
@@ -90,7 +90,7 @@ const SleepingArragement = (props) => {
     // Add Normal bed
     for (let i = 0; i < beds.normal; i++) {
       icons.push(
-        <NormalIcon viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false" >
+        <NormalIcon key={'normal-bed-' + i} viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false" >
           <Bed />
         </NormalIcon>
       );
