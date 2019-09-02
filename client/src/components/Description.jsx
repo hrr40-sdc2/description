@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import sc from './styled/OverviewPart.jsx';
+import Badge from './icons/Badge.jsx';
 
 
 const OverviewPart = sc.OverviewPart;
@@ -27,6 +28,7 @@ const Location = styled.span`
 
 const HostContainer = styled.div`
   padding: 0 5px;
+  position: relative;
   float: right;
   text-align: center;
   font-size: 14px;
@@ -38,6 +40,14 @@ const HostPhoto = styled.img`
   width: 64px;
   background-color:#777;
   border-radius: 32px;
+`;
+
+const HostBadge = styled.div`
+  position: absolute;
+  top: 35px;
+  right: -3px
+  height:32px;
+  width:32px;
 `;
 
 const Summary = styled.div`
@@ -120,6 +130,9 @@ const Description = ({ house = {}}) => {
       <HostContainer className="host-photo">
         <HostPhoto src={path + house.super_host_photo} />
         <div>{house.super_host_name}</div>
+        <HostBadge>
+          <Badge />
+        </HostBadge>
       </HostContainer>
 
       <Summary>
