@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Share from './icons/Share.jsx';
 import Heart from './icons/Heart.jsx';
+import $ from 'jquery';
 
 
 const BannerContainer = styled.div`
@@ -15,6 +16,7 @@ const PhotosContainer = styled.div`
 `;
 
 const PrimaryPhotoContainer = styled.div`
+  position: relative;
   float: left;
   width: 49.5%;
   height: 290px;
@@ -23,6 +25,7 @@ const PrimaryPhotoContainer = styled.div`
 `;
 
 const SecondaryPhotoContainer = styled.div`
+  position: relative;
   float: left;
   width: 25%;
   height: 144px;
@@ -31,19 +34,27 @@ const SecondaryPhotoContainer = styled.div`
 `;
 
 const PrimaryPhoto = styled.img`
-  min-width: 100%;
-  max-width: 150%
-  min-height: 100%;
-  max-height: 150%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   cursor: pointer;
 `;
 
 const SecondaryPhoto = styled.img`
-  min-width: 100%;
-  max-width: 150%
-  min-height: 100%;
-  max-height: 150%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   cursor: pointer;
+`;
+
+const PhotoShadow = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #07070755;
 `;
 
 const CommandsContainer = styled.div`
@@ -94,6 +105,15 @@ const CommandItem = styled.div`
 
 const Banner = (props) => {
 
+  let photos = [];
+
+  // Sort photos
+  if (props.photos) {
+    photos = props.photos.sort(function(p1, p2) {
+      return p1.photo_id - p2.photo_id;
+    });
+  }
+
   // TODO: Change this to Amazon S3 Storage path later
   let path = '/photos/house/';
 
@@ -104,46 +124,104 @@ const Banner = (props) => {
   let photo5 = 'default.jpg';
 
   const loadPhotos = () => {
-    if (!props.photos) {
+    if (!photos.length) {
       return;
     }
-    if (props.photos[0]) {
-      photo1 = props.photos[0].file_path;
+    if (photos[0]) {
+      photo1 = photos[0].file_path;
     }
-    if (props.photos[1]) {
-      photo2 = props.photos[1].file_path;
+    if (photos[1]) {
+      photo2 = photos[1].file_path;
     }
-    if (props.photos[2]) {
-      photo3 = props.photos[2].file_path;
+    if (photos[2]) {
+      photo3 = photos[2].file_path;
     }
-    if (props.photos[3]) {
-      photo4 = props.photos[3].file_path;
+    if (photos[3]) {
+      photo4 = photos[3].file_path;
     }
-    if (props.photos[4]) {
-      photo5 = props.photos[4].file_path;
+    if (photos[4]) {
+      photo5 = photos[4].file_path;
     }
   };
 
+  const zoomPhoto = (event) => {
+    let $photo = $(event.target);
+
+    // Shadow all other photos
+    $('.photo-shadow').each((index, shadow) => {
+      if ($photo.data('id') !== $(shadow).data('id')) {
+        $(shadow).css({ width: '100%'});
+      }
+    });
+
+    let style = {
+      width: '105%',
+      height: '105%'
+    };
+
+    if ($photo.width() > $photo.height()) {
+      style.marginLeft = '-2.5%';
+    }
+
+    $photo.animate(style, 500);
+  };
+
+  const unzoomPhoto = (event) => {
+    let $photo = $(event.target);
+
+    // Unshadow all photos
+    $('.photo-shadow').each((index, shadow) => {
+      $(shadow).css({ width: 'auto'});
+    });
+
+    let style = {
+      width: '100%',
+      height: '100%'
+    };
+
+    if ($photo.width() > $photo.height()) {
+      style.marginLeft = '0';
+    }
+
+    $photo.animate(style, 500);
+  };
+
+  // Load Photos automatically if they are ready in props
   loadPhotos();
 
   return (
     <BannerContainer id="overview-house-banner" >
       <PhotosContainer className="photos-container" >
-        <PrimaryPhotoContainer>
-          <PrimaryPhoto src={path + photo1}></PrimaryPhoto>
+        <PrimaryPhotoContainer >
+          <PrimaryPhoto src={path + photo1} data-id={1}
+            onMouseOver={zoomPhoto.bind(this)}
+            onMouseOut={unzoomPhoto.bind(this)} ></PrimaryPhoto>
+          <PhotoShadow className="photo-shadow" data-id={1} />
         </PrimaryPhotoContainer>
 
         <SecondaryPhotoContainer>
-          <SecondaryPhoto src={path + photo2}></SecondaryPhoto>
+          <SecondaryPhoto src={path + photo2} data-id={2}
+            onMouseOver={zoomPhoto.bind(this)}
+            onMouseOut={unzoomPhoto.bind(this)} ></SecondaryPhoto>
+          <PhotoShadow className="photo-shadow" data-id={2} />
         </SecondaryPhotoContainer>
         <SecondaryPhotoContainer>
-          <SecondaryPhoto src={path + photo3}></SecondaryPhoto>
+          <SecondaryPhoto src={path + photo3} data-id={3}
+            onMouseOver={zoomPhoto.bind(this)}
+            onMouseOut={unzoomPhoto.bind(this)} ></SecondaryPhoto>
+          <PhotoShadow className="photo-shadow" data-id={3} />
         </SecondaryPhotoContainer>
         <SecondaryPhotoContainer>
-          <SecondaryPhoto src={path + photo4}></SecondaryPhoto>
+          <SecondaryPhoto src={path + photo4} data-id={4}
+            onMouseOver={zoomPhoto.bind(this)}
+            onMouseOut={unzoomPhoto.bind(this)} ></SecondaryPhoto>
+          <PhotoShadow className="photo-shadow" data-id={4} />
         </SecondaryPhotoContainer>
         <SecondaryPhotoContainer>
-          <SecondaryPhoto src={path + photo5}></SecondaryPhoto>
+          <SecondaryPhoto src={path + photo5} data-id={5}
+            onMouseOver={zoomPhoto.bind(this)}
+            onMouseOut={unzoomPhoto.bind(this)} ></SecondaryPhoto>
+          <PhotoShadow className="photo-shadow" data-id={5} />
         </SecondaryPhotoContainer>
       </PhotosContainer>
 

@@ -80,6 +80,9 @@ const DescriptionContainer = styled.div`
 
 const Description = ({ house = {}}) => {
 
+  // TODO: change this to Amazon S3
+  let path = '/photos/host/';
+
   let room = {
     guest: 0,
     bedroom: 0,
@@ -110,12 +113,12 @@ const Description = ({ house = {}}) => {
   return (
     <OverviewPart>
       <TitleContainer className="title">
-        <TitleHeader>{house.title}</TitleHeader>
+        <TitleHeader>{house.title ? house.title.slice(0, 30) : ''}</TitleHeader>
         <div><Location className="location">{house.location}</Location></div>
       </TitleContainer>
 
       <HostContainer className="host-photo">
-        <HostPhoto src={house.super_host_photo} />
+        <HostPhoto src={path + house.super_host_photo} />
         <div>{house.super_host_name}</div>
       </HostContainer>
 
