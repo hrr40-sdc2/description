@@ -52,7 +52,7 @@ app.get('/houses/search/:qry', (req, res, next) => {
   }).limit(10);
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3010;
 
 app.listen(port, () => {
   console.log(`Housemania Server is running at port ${port}`);

@@ -63,6 +63,11 @@ class App extends React.Component {
       house: {},
       floatTopBar: false
     };
+
+    // TODO: Add Amazon HOST when configured in place of root path
+    // Amazon Server HOST will be by default. Set to local if in Env settings
+    let port = process.env.PORT || 3010;
+    this.path = process.env.HOST || 'http://localhost:' + port + '/';
   }
 
 
@@ -87,9 +92,11 @@ class App extends React.Component {
   }
 
   loadHouse(id, callback) {
+    var path = this.path;
+
     $.ajax({
       method: 'GET',
-      url: '/houses/' + id,
+      url: path + 'houses/' + id,
       contentType: 'application/json',
       cache: false,
       success: callback,
