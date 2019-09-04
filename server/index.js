@@ -1,11 +1,14 @@
 const express = require('express');
 require('dotenv').config();
+var cors = require('./cors');
 
 const House = require('./../database/House.js');
 const Photo = require('./../database/Photo.js');
 
 const app = express();
 
+// Middlewares
+app.use(cors);
 app.use(express.json());
 app.use(express.static(__dirname + '/../client/dist'));
 // serve static image files in public if necessary
