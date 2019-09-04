@@ -114,8 +114,8 @@ const Banner = (props) => {
     });
   }
 
-  // TODO: Change this to Amazon S3 Storage path later
-  let path = '/photos/house/';
+  // Amazon S3 is by default. Set to local if in Env settings
+  let path = process.env.HOUSE_PHOTOS_URI || 'https://housemania-hr.s3-us-west-1.amazonaws.com/photos/house/';
 
   let photo1 = 'default.jpg';
   let photo2 = 'default.jpg';

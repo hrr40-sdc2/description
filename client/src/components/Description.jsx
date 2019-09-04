@@ -90,8 +90,8 @@ const DescriptionContainer = styled.div`
 
 const Description = ({ house = {}}) => {
 
-  // TODO: change this to Amazon S3
-  let path = '/photos/host/';
+  // Amazon S3 is by default. Set to local if in Env settings
+  let path = process.env.HOST_PHOTOS_URI || 'https://housemania-hr.s3-us-west-1.amazonaws.com/photos/host/';
 
   let room = {
     guest: 0,
