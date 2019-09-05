@@ -40,7 +40,7 @@ jobs:
       # start node server
       - run:
           name: Start Node Server
-          command: yarn start
+          command: PORT=3010 yarn start
           background: true
 
       # run server tests!

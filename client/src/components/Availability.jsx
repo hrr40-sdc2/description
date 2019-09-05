@@ -42,12 +42,13 @@ class Availability extends React.Component {
   }
 
   render() {
-    return (
+    return <div></div>;
+    /*return (
       <OverviewPart>
         <PartHeader>Availability</PartHeader>
         <DateList>{this.listDates()}</DateList>
       </OverviewPart>
-    );
+    );*/
   }
 }
 
