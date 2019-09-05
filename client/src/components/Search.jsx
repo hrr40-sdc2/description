@@ -51,8 +51,7 @@ class Search extends React.Component {
 
     // TODO: Add Amazon HOST when configured in place of root path
     // Amazon Server HOST will be by default. Set to local if in Env settings
-    let port = process.env.PORT || 3010;
-    this.path = process.env.HOST || 'http://localhost:' + port + '/';
+    this.path = process.env.SERVER_HOST || 'http://localhost:3010';
   }
 
   loadHouses(qry) {
@@ -76,7 +75,7 @@ class Search extends React.Component {
 
     $.ajax({
       method: 'GET',
-      url: path + 'houses/search/' + qry,
+      url: path + '/houses/search/' + qry,
       contentType: 'application/json',
       cache: false,
       success: callback,

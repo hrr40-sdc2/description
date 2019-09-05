@@ -91,9 +91,7 @@ const DescriptionContainer = styled.div`
 const Description = ({ house = {}}) => {
 
   // Amazon S3 is by default. Set to local if in Env settings
-  let path = process.env.HOST_PHOTOS_URI || 'https://housemania-hr.s3-us-west-1.amazonaws.com/photos/host/';
-
-  let iconsPath = process.env.ICONS_URI || 'https://housemania-hr.s3-us-west-1.amazonaws.com/icons/';
+  let host = process.env.HOUSEMANIA_HOST || 'https://housemania-hr.s3-us-west-1.amazonaws.com';
 
   let room = {
     guest: 0,
@@ -130,7 +128,7 @@ const Description = ({ house = {}}) => {
       </TitleContainer>
 
       <HostContainer className="host-photo">
-        <HostPhoto src={path + house.super_host_photo} />
+        <HostPhoto src={host + '/photos/host/' + (house.super_host_photo || '/default.jpg')} />
         <div>{house.super_host_name}</div>
         <HostBadge>
           <Badge />
@@ -141,7 +139,7 @@ const Description = ({ house = {}}) => {
 
         <SummaryItem>
           <ItemIconContainer>
-            <ItemIcon src={iconsPath + '/house-black-icon.png'} />
+            <ItemIcon src={host + '/icons/house-black-icon.png'} />
           </ItemIconContainer>
           <ItemDetails>
             <PartHeader>Private room in house</PartHeader>
@@ -154,7 +152,7 @@ const Description = ({ house = {}}) => {
 
         <SummaryItem>
           <ItemIconContainer>
-            <ItemIcon src={iconsPath + '/key-black-icon.png'} />
+            <ItemIcon src={host + '/icons/key-black-icon.png'} />
           </ItemIconContainer>
           <ItemDetails>
             <PartHeader>Great check-in experience</PartHeader>
@@ -164,7 +162,7 @@ const Description = ({ house = {}}) => {
 
         <SummaryItem>
           <ItemIconContainer>
-            <ItemIcon src={iconsPath + '/medal-black-icon.png'} />
+            <ItemIcon src={host + '/icons/medal-black-icon.png'} />
           </ItemIconContainer>
           <ItemDetails>
             <PartHeader>{house.super_host_name} is a Superhost</PartHeader>
