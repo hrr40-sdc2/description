@@ -12,7 +12,7 @@ const SearchResults = ({ houses = [] }) => {
     left: -1px;
     width: 100%;
     background-color: #fff;
-    border: ${houses.length > 0 ? '1px solid #eee' : 'none'}
+    /*border: {houses.length > 0 ? '1px solid #eee' : 'none'}*/
     border-radius: 0 0 5px 5px;
     z-index: 1;
   `;

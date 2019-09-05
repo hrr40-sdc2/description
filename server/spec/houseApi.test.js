@@ -4,7 +4,7 @@ var expect = require('chai').expect;
 describe('House Mania API Testing', function() {
 
   it('Should retrieve the house data with ID 1 from the DB', function(done) {
-    request('http://127.0.0.1:3000/houses/1', function(error, response, body) {
+    request('http://127.0.0.1:3010/houses/1', function(error, response, body) {
       if (error) {
         console.log('error house', error);
       }
@@ -16,7 +16,7 @@ describe('House Mania API Testing', function() {
   });
 
   it('Should retrieve all the photos of house with ID 1 from the DB', function(done) {
-    request('http://127.0.0.1:3000/photos/houses/1', function(error, response, body) {
+    request('http://127.0.0.1:3010/photos/houses/1', function(error, response, body) {
       if (error) {
         console.log('error house photos', error);
       }
@@ -28,7 +28,7 @@ describe('House Mania API Testing', function() {
   });
 
   it('Should retrieve houses whose title and location match the search query', function(done) {
-    request('http://127.0.0.1:3000/houses/search/consectetuer', function(error, response, body) {
+    request('http://127.0.0.1:3010/houses/search/consectetuer', function(error, response, body) {
       if (error) {
         console.log('error search house', error);
       }

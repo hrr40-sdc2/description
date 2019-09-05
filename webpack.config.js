@@ -1,3 +1,4 @@
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
 
@@ -5,10 +6,13 @@ const dotenv = require('dotenv');
 const env = dotenv.config().parsed;
 
 // reduce it to a nice object containing the .env key value pairs
-const envKeys = Object.keys(env).reduce((prev, next) => {
-  prev[`process.env.${next}`] = JSON.stringify(env[next]);
-  return prev;
-}, {});
+let envKeys = {};
+if (env) {
+  envKeys = Object.keys(env).reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+    return prev;
+  }, {});
+}
 
 
 module.exports = {
@@ -40,6 +44,10 @@ module.exports = {
     path: __dirname + '/client/dist'
   },
   plugins: [
+    new HtmlWebPackPlugin({
+      template: __dirname + '/client/src/index.html',
+      filename: __dirname + '/client/dist/index.html'
+    }),
     new webpack.DefinePlugin(envKeys)
   ]
 };
