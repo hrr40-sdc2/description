@@ -93,6 +93,8 @@ const Description = ({ house = {}}) => {
   // Amazon S3 is by default. Set to local if in Env settings
   let path = process.env.HOST_PHOTOS_URI || 'https://housemania-hr.s3-us-west-1.amazonaws.com/photos/host/';
 
+  let iconsPath = process.env.ICONS_URI || 'https://housemania-hr.s3-us-west-1.amazonaws.com/icons/';
+
   let room = {
     guest: 0,
     bedroom: 0,
@@ -139,7 +141,7 @@ const Description = ({ house = {}}) => {
 
         <SummaryItem>
           <ItemIconContainer>
-            <ItemIcon src="/icons/house-black-icon.png" />
+            <ItemIcon src={iconsPath + '/house-black-icon.png'} />
           </ItemIconContainer>
           <ItemDetails>
             <PartHeader>Private room in house</PartHeader>
@@ -152,7 +154,7 @@ const Description = ({ house = {}}) => {
 
         <SummaryItem>
           <ItemIconContainer>
-            <ItemIcon src="/icons/key-black-icon.png" />
+            <ItemIcon src={iconsPath + '/key-black-icon.png'} />
           </ItemIconContainer>
           <ItemDetails>
             <PartHeader>Great check-in experience</PartHeader>
@@ -162,7 +164,7 @@ const Description = ({ house = {}}) => {
 
         <SummaryItem>
           <ItemIconContainer>
-            <ItemIcon src="/icons/medal-black-icon.png" />
+            <ItemIcon src={iconsPath + '/medal-black-icon.png'} />
           </ItemIconContainer>
           <ItemDetails>
             <PartHeader>{house.super_host_name} is a Superhost</PartHeader>
