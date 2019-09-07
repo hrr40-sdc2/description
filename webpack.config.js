@@ -1,6 +1,7 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
+const path = require('path');
 
 // call dotenv and it will return an Object with a parsed key
 const env = dotenv.config().parsed;
@@ -16,7 +17,36 @@ if (env) {
 
 
 module.exports = {
-  entry: __dirname + '/client/src/index.jsx',
+  entry: {
+    main: __dirname + '/client/src/index.jsx',
+    vendor: ['styled-components'],
+  },
+  optimization: {
+    runtimeChunk: {
+      name: 'vendor'
+    },
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          enforce: true
+        },
+        default: {
+          chunks: 'all',
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    }
+  },
+  resolve: {
+    alias: {
+      'styled-components': path.resolve('./node_modules', 'styled-components'),
+    }
+  },
   module: {
     rules: [
       {
@@ -40,7 +70,7 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: __dirname + '/client/dist'
   },
   plugins: [
