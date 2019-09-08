@@ -45,7 +45,7 @@ const SearchResults = ({ houses = [] }) => {
 
   const listHouses = () => {
 
-    let host = process.env.HOUSEMANIA_HOST || 'https://housemania-hr.s3-us-west-1.amazonaws.com';
+    let s3 = process.env.S3_HOST || 'https://housemania-hr.s3-us-west-1.amazonaws.com';
 
     // display only 10 at maximum
     let listHouses = houses.slice();
@@ -56,7 +56,7 @@ const SearchResults = ({ houses = [] }) => {
       return (
         <House key={house.house_id + '-summary-' + ind} title={house.title}
           onClick={handleHouseClick.bind(this, house.house_id)}>
-          <Icon src={host + '/icons/house-black-icon.png'} />
+          <Icon src={s3 + '/icons/house-black-icon.png'} />
           {title}
         </House>
       );
