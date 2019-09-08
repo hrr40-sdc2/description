@@ -20,8 +20,6 @@ coverage
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
-# Environment settings
-.env
 
 # Photos in public directory because we won't need them in production
 public/photos

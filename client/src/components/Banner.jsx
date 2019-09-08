@@ -117,11 +117,11 @@ const Banner = (props) => {
   // Amazon S3 is by default. Set to local if in Env settings
   let host = process.env.HOUSEMANIA_HOST || 'https://housemania-hr.s3-us-west-1.amazonaws.com';
 
-  let photo1 = '/photos/house/default.jpg';
-  let photo2 = '/photos/house/default.jpg';
-  let photo3 = '/photos/house/default.jpg';
-  let photo4 = '/photos/house/default.jpg';
-  let photo5 = '/photos/house/default.jpg';
+  let photo1 = 'default.jpg';
+  let photo2 = 'default.jpg';
+  let photo3 = 'default.jpg';
+  let photo4 = 'default.jpg';
+  let photo5 = 'default.jpg';
 
   const loadPhotos = () => {
     if (!photos.length) {
