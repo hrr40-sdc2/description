@@ -64,9 +64,8 @@ class App extends React.Component {
       floatTopBar: false
     };
 
-    // TODO: Add Amazon HOST when configured in place of root path
     // Amazon Server HOST will be by default. Set to local if in Env settings
-    this.path = process.env.SERVER_HOST || 'http://localhost:3010';
+    this.host = process.env.HOUSEMANIA_HOST || 'http://housemania-overview.us-west-1.elasticbeanstalk.com';
   }
 
 
@@ -91,11 +90,11 @@ class App extends React.Component {
   }
 
   loadHouse(id, callback) {
-    var path = this.path;
+    var host = this.host;
 
     $.ajax({
       method: 'GET',
-      url: path + '/houses/' + id,
+      url: host + '/houses/' + id,
       contentType: 'application/json',
       cache: false,
       success: callback,

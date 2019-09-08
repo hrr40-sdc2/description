@@ -49,9 +49,8 @@ class Search extends React.Component {
       houses: []
     };
 
-    // TODO: Add Amazon HOST when configured in place of root path
     // Amazon Server HOST will be by default. Set to local if in Env settings
-    this.path = process.env.SERVER_HOST || 'http://localhost:3010';
+    this.host = process.env.HOUSEMANIA_HOST || 'http://housemania-overview.us-west-1.elasticbeanstalk.com';
   }
 
   loadHouses(qry) {
@@ -71,11 +70,11 @@ class Search extends React.Component {
   }
 
   searchHouses(qry, callback) {
-    var path = this.path;
+    var host = this.host;
 
     $.ajax({
       method: 'GET',
-      url: path + '/houses/search/' + qry,
+      url: host + '/houses/search/' + qry,
       contentType: 'application/json',
       cache: false,
       success: callback,
