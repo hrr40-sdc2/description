@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import sc from './styled/OverviewPart.jsx';
 import Badge from './icons/Badge.jsx';
+import $ from 'jquery';
 
 
 const OverviewPart = sc.OverviewPart;
@@ -86,6 +87,25 @@ const DescriptionContainer = styled.div`
   margin-top: 24px;
 `;
 
+const ReadMoreContainer = styled.div`
+  display:none;
+`;
+
+const ReadMore = styled.button`
+  margin-top: 10px;
+  padding: 0px;
+  color: #008489;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none !important;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+
 
 
 const Description = ({ house = {}}) => {
@@ -119,6 +139,24 @@ const Description = ({ house = {}}) => {
   };
 
   loadRoomUnitInfo();
+
+  const handleReadMoreClick = (event) => {
+    let $button = $(event.target);
+    let $container = $('#read-more-container');
+
+    if ($container.is(':visible')) {
+      // then hide
+      $container.fadeToggle(500, () => {
+        $button.text('Read more about the space ⌄');
+
+      });
+    } else {
+      // then show
+      $container.fadeToggle(500, () => {
+        $button.text('Hide ⌃');
+      });
+    }
+  };
 
   return (
     <OverviewPart>
@@ -175,18 +213,23 @@ const Description = ({ house = {}}) => {
       <DescriptionContainer>
         {house.desc}
       </DescriptionContainer>
-      <DescriptionContainer>
-        <PartHeader>The Space</PartHeader>
-        {house.space_desc}
-      </DescriptionContainer>
-      <DescriptionContainer>
-        <PartHeader>Guest Access</PartHeader>
-        {house.guest_desc}
-      </DescriptionContainer>
-      <DescriptionContainer>
-        <PartHeader>Other things to note</PartHeader>
-        {house.other_desc}
-      </DescriptionContainer>
+      <div >
+        <ReadMoreContainer id="read-more-container" >
+          <DescriptionContainer>
+            <PartHeader>The Space</PartHeader>
+            {house.space_desc}
+          </DescriptionContainer>
+          <DescriptionContainer>
+            <PartHeader>Guest Access</PartHeader>
+            {house.guest_desc}
+          </DescriptionContainer>
+          <DescriptionContainer>
+            <PartHeader>Other things to note</PartHeader>
+            {house.other_desc}
+          </DescriptionContainer>
+        </ReadMoreContainer>
+        <ReadMore onClick={handleReadMoreClick} >Read more about the space ⌄</ReadMore>
+      </div>
     </OverviewPart>
   );
 };
