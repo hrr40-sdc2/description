@@ -16,6 +16,10 @@ app.use(express.static(__dirname + '/../public'));
 
 
 // API Endpoints
+app.post('/houses', (req, res) => {
+
+});
+
 app.get('/houses/:id', (req, res, next) => {
   var houseId = req.params.id;
 
@@ -53,6 +57,14 @@ app.get('/houses/search/:qry', (req, res, next) => {
       res.status(200).json(houses);
     }
   }).limit(10);
+});
+
+app.put('/houses', (req, res) => {
+
+});
+
+app.delete('/houses', (req, res) => {
+
 });
 
 const port = process.env.PORT || 3010;
