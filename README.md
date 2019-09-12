@@ -33,43 +33,43 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 ### Post
 
-#### Houses
+#### POST/Houses
 ```
 route: 'http://localhost:3010/houses'
 ```
-#### Photos
+#### POST/Photos
 ```
 route: 'http://localhost:3010/photos
 ```
 
 ### Read
 
-#### Houses
+#### GET/Houses
 ```
 route: 'http://localhost:3010/houses/:id'
 ```
-#### Photos
+#### GET/Photos
 ```
 route: 'http://localhost:3010/photos/:id'
 ```
 ### Update
 
-#### Houses
+#### PUT/Houses
 ```
 route: 'http://localhost:3010/houses/:id'
 ```
-#### Photos
+#### PUT/Photos
 ```
 route: 'http://localhost:3010/photos/:id'
 ```
 
 ### Delete
 
-#### Houses
+#### DELETE/Houses
 ```
 route: 'http://localhost:3010/houses/:id'
 ```
-#### Photos
+#### DELETE/Photos
 ```
 route: 'http://localhost:3010/photos/:id'
 ```
