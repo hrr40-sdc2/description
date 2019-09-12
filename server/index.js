@@ -69,7 +69,6 @@ app.put('/houses/:id', (req, res) => {
   var id = req.param.id;
   var value = req.param.body;
   House.update({id: id}, {$set: value})
-
 });
 
 app.delete('/houses/:id', (req, res) => {
