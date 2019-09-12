@@ -16,6 +16,16 @@ app.use(express.static(__dirname + '/../public'));
 
 
 // API Endpoints
+app.post('/houses', (req, res) => {
+  House.create(req.body, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.sendStatus(201);
+    }
+  });
+});
+
 app.get('/houses/:id', (req, res, next) => {
   var houseId = req.params.id;
 
@@ -53,6 +63,24 @@ app.get('/houses/search/:qry', (req, res, next) => {
       res.status(200).json(houses);
     }
   }).limit(10);
+});
+
+app.put('/houses/:id', (req, res) => {
+  var id = req.param.id;
+  var value = req.param.body;
+  House.update({id: id}, {$set: value})
+
+});
+
+app.delete('/houses/:id', (req, res) => {
+  var id = req.param.id;
+  House.deleteOne({id: id}, (error, message) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.sendStatus(204);
+    }
+  });
 });
 
 const port = process.env.PORT || 3010;
