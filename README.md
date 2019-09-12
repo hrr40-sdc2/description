@@ -14,6 +14,7 @@
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
+1. [API](#API)
 
 ## Usage
 
@@ -27,6 +28,52 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 - etc
 
 ## Development
+
+## API
+
+### Post
+
+#### Houses
+```
+route: '/houses'
+```
+#### Photos
+```
+route '/photos
+```
+
+### Read
+
+#### Houses
+```
+route: '/houses/:id'
+```
+#### Photos
+```
+route: '/photos/houses/:id'
+```
+### Update
+
+#### Houses
+```
+route: '/houses/:id'
+```
+#### Photos
+```
+route: '/photos/houses/:id'
+```
+
+### Delete
+
+#### Houses
+```
+route: '/houses/:id'
+```
+#### Photos
+```
+route: '/photos/houses/:id'
+```
+
 
 ### Installing Dependencies
 
