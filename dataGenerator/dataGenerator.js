@@ -1,6 +1,6 @@
 var faker = require('faker');
 var fs = require('fs');
-// var amenities = require('./createAmenities.js');
+
 
 const records = 10000000;
 const houseData = fs.createWriteStream('./houses.csv', {encoding: 'utf8'});
@@ -36,7 +36,7 @@ var createRooms = () => {
   console.time('load rooms');
   (async() => {
     roomData.write('house_id,guests,size,bath\n');
-    for (var i = 1; i <= records; i++) {
+    for (var i = 1; i <= records * 3; i++) {
       const house_id = i;
       const guests = faker.random.number({min: 1, max: 10});
       const size = faker.lorem.word();
@@ -58,7 +58,7 @@ var createPhotos = () => {
   console.time('load Photos');
   (async() => {
     photoData.write('id,house_id,file_path,desc\n');
-    for (var i = 1; i <= records; i++) {
+    for (var i = 1; i <= records * 3; i++) {
       const id = i;
       const house_id = faker.random.number({min: 1, max: 10000000});
       const file_path = `https://hrr40-sdc-images.s3.us-east-2.amazonaws.com/sdc-house-images/houseimage${faker.random.number({min: 1, max: 1000})}.jpg`;
@@ -76,9 +76,3 @@ var createPhotos = () => {
 createHouse()
 createRooms()
 createPhotos()
-/*
-for each table create a separate csv file
-
-need to create async function
-  drain each process
-*/
