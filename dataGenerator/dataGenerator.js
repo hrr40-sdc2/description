@@ -2,7 +2,7 @@ var faker = require('faker');
 var fs = require('fs');
 // var amenities = require('./createAmenities.js');
 
-const records = 5;
+const records = 10000000;
 const houseData = fs.createWriteStream('./houses.csv', {encoding: 'utf8'});
 const photoData = fs.createWriteStream('./photos.csv', {encoding: 'utf8'});
 const roomData = fs.createWriteStream('./rooms.csv', {encoding: 'utf8'});
@@ -10,7 +10,7 @@ const roomData = fs.createWriteStream('./rooms.csv', {encoding: 'utf8'});
 var createHouse = () => {
   console.time('house load');
   (async() => {
-    houseData.write('id,title,location,super_host_name,super_host_photo,rating,desc,space_desc,guest_desc,other_desc\n');
+    houseData.write('id,title,location,super_host_name,super_host_photo, rating,desc,space_desc,guest_desc,other_desc\n');
     for (var i = 1; i <= records; i++) {
       const id = i;
       const title = faker.lorem.words();
@@ -23,6 +23,7 @@ var createHouse = () => {
       const guest_desc = faker.lorem.words();
       const other_desc = faker.lorem.words();
       const House = `${id},${title},${location},${super_host_name},${super_host_photo},${rating},${desc},${space_desc},${guest_desc},${other_desc}\n`;
+
       if (!houseData.write(House, {flag: 'r+'})) {
         await new Promise(resolve => houseData.once('drain', resolve));
       }
@@ -30,7 +31,6 @@ var createHouse = () => {
   })();
   console.timeEnd('house load');
 }
-
 
 var createRooms = () => {
   console.time('load rooms');
@@ -46,7 +46,8 @@ var createRooms = () => {
       if (!roomData.write(Room, {flag: 'r+'})) {
         await new Promise(resolve => roomData.once('drain', resolve));
       }
-    };
+    }
+
   })();
   console.timeEnd('load rooms');
 }
