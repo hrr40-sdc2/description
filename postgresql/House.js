@@ -1,6 +1,6 @@
 
 
-CREATE TABLE public.home
+CREATE TABLE homes
 (
   id                        SERIAL PRIMARY KEY,
   title                     VARCHAR(256),
@@ -16,7 +16,7 @@ CREATE TABLE public.home
   updated_at                TIMESTAMP
 );
 
-CREATE TABLE public.home_image
+CREATE TABLE photos
 (
     id              SERIAL PRIMARY KEY,
     home_id         INTEGER REFERENCES public.home (id),
@@ -26,7 +26,7 @@ CREATE TABLE public.home_image
     updated_at      TIMESTAMP
 );
 
-CREATE TABLE public.home_bedroom
+CREATE TABLE bedrooms
 (
     id              SERIAL PRIMARY KEY,
     home_id         INTEGER REFERENCES public.home (id),
@@ -36,7 +36,7 @@ CREATE TABLE public.home_bedroom
     updated_at      TIMESTAMP
 );
 
-CREATE TABLE public.home_amenity
+CREATE TABLE amenities
 (
     id              SERIAL  PRIMARY KEY,
     home_id         INTEGER REFERENCES public.home (id),

@@ -9,10 +9,10 @@ const pool = new Pool({
   port: 5432
 });
 
-const copyHouses = "\COPY public.home FROM '../dataGenerator/houses.csv' WITH DELIMITER ',' csv HEADER";
-const copyRooms = "\COPY public.rooms FROM '../dataGenerator/rooms.csv' WITH DELIMITER ',' csv HEADER";
-const copyPhotos = "\COPY public.photos FROM '../dataGenerator/photos.csv' WITH DELIMITER ',' csv HEADER";
-const copyAmenities = "\COPY public.amenities FROM '../dataGenerator/amenities.csv' WITH DELIMITER ',' csv HEADER";
+const copyHouses = "\COPY homes FROM '../dataGenerator/houses.csv' WITH DELIMITER ',' csv HEADER";
+const copyRooms = "\COPY bedrooms FROM '../dataGenerator/rooms.csv' WITH DELIMITER ',' csv HEADER";
+const copyPhotos = "\COPY photos FROM '../dataGenerator/photos.csv' WITH DELIMITER ',' csv HEADER";
+const copyAmenities = "\COPY amenities FROM '../dataGenerator/amenities.csv' WITH DELIMITER ',' csv HEADER";
 
 pool.connect((err) => {
   if (err) {
