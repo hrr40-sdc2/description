@@ -1,5 +1,4 @@
-CREATE DATABASE test;
-\connect ;
+
 
 CREATE TABLE public.home
 (
