@@ -4,45 +4,39 @@ CREATE TABLE homes
 (
   id                        SERIAL PRIMARY KEY,
   title                     VARCHAR(256),
-  location                  VARCHAR(256,)
+  is_entire_place           VARCHAR(10),
+  location                  VARCHAR(256),
   super_host_name           VARCHAR(20),
   super_host_photo          VARCHAR(128),
-  rating                    VARCHAR(5),
-  desc                      TEXT,
-  space_desc                TEXT,
-  guest_desc                TEXT,
-  other_desc                TEXT,
-  created_at                TIMESTAMP,
-  updated_at                TIMESTAMP
+  rating                    INTEGER,
+  description               VARCHAR(256),
+  space_desc                VARCHAR(256),
+  guest_desc                VARCHAR(256),
+  other_desc                VARCHAR(256)
 );
 
 CREATE TABLE photos
 (
     id              SERIAL PRIMARY KEY,
-    home_id         INTEGER REFERENCES public.home (id),
+    home_id         INTEGER,
     file_path       VARCHAR(256),
-    desc            Text,
-    created_at      TIMESTAMP,
-    updated_at      TIMESTAMP
+    description     VARCHAR(256)
 );
 
 CREATE TABLE bedrooms
 (
     id              SERIAL PRIMARY KEY,
-    home_id         INTEGER REFERENCES public.home (id),
-    size            VARCHAR (10),
-    bath            VARCHAR(10),
-    created_at      TIMESTAMP,
-    updated_at      TIMESTAMP
+    home_id         INTEGER,
+    guests          INTEGER,
+    size            VARCHAR (256),
+    bath            VARCHAR(10)
 );
 
 CREATE TABLE amenities
 (
     id              SERIAL  PRIMARY KEY,
-    home_id         INTEGER REFERENCES public.home (id),
-    category        Text,
-    item            Text,
-    desc            Text,
-    created_at      TIMESTAMP,
-    updated_at      TIMESTAMP
+    home_id         INTEGER,
+    category        VARCHAR(256),
+    item            VARCHAR(256),
+    description     VARCHAR(256)
 );
