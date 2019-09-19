@@ -20,8 +20,8 @@ var createHouse = () => {
         const super_host_name = faker.name.firstName();
         const super_host_photo = faker.image.imageUrl();
         const rating = faker.random.number({min: 1, max: 5});
-        const desc = faker.lorem.paragraph();
-        const space_desc = faker.lorem.paragraph();
+        const desc = faker.lorem.words();
+        const space_desc = faker.lorem.words();
         const guest_desc = faker.lorem.words();
         const other_desc = faker.lorem.words();
         const House = `${id},${title},${location},${super_host_name},${super_host_photo},${rating},${desc},${space_desc},${guest_desc},${other_desc}\n`;
@@ -58,7 +58,7 @@ var createPhotos = () => {
       const id = i;
       const house_id = faker.random.number({min: 1, max: 10000000});
       const file_path = `https://hrr40-sdc-images.s3.us-east-2.amazonaws.com/sdc-house-images/houseimage${faker.random.number({min: 1, max: 1000})}.jpg`;
-      const desc = faker.lorem.words();
+      const desc = faker.random.word();
       const Photo = `${id},${house_id},${file_path}, ${desc}\n`;
       if (!photoData.write(Photo, {flag: 'r+'})) {
         await new Promise(resolve => photoData.once('drain', resolve));
@@ -75,7 +75,7 @@ var createAmenities = () => {
       const house_id = faker.random.number({min: 1, max: 10000000});
       const category = faker.random.word();
       const item = faker.random.word();
-      const desc = faker.random.words();
+      const desc = faker.lorem.words();
       const Amenities = `${id},${house_id},${category},${item},${desc}\n`;
       if (!amenData.write(Amenities, {flag: 'r+'})) {
         await new Promise(resolve => amenData.once('drain', resolve));
