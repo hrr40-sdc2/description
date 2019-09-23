@@ -1,9 +1,18 @@
 const express = require('express');
 require('dotenv').config();
 var cors = require('./cors');
-
 const House = require('./../database/House.js');
 const Photo = require('./../database/Photo.js');
+const { Pool } = require('pg');
+const { username, password } = require('../config.js');
+
+const pool = new Pool({
+  host: 'localhost',
+  username,
+  password,
+  database: 'housemania',
+  port: 5432
+});
 
 const app = express();
 
@@ -13,6 +22,18 @@ app.use(express.json());
 app.use(express.static(__dirname + '/../client/dist'));
 // serve static image files in public if necessary
 app.use(express.static(__dirname + '/../public'));
+
+//postgreSQL
+app.get('/api/houses', (req, res) => {
+  const query = 'select * from homes, bedrooms, photos, amenities limit 1';
+  pool.query(query)
+    .then((data) => {
+      console.log(data);
+      res.send(data).status(200);
+    })
+});
+
+
 
 
 // API Endpoints
