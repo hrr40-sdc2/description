@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 require('dotenv').config();
 var cors = require('./cors');
@@ -43,11 +44,14 @@ app.get('/api/houses/:id', (req, res) => {
 });
 
 app.post('/api/houses', (req, res) => {
-  const query = 'insert into homes(title, is_entire_place, location, super_host_name, super_host_photo, rating, description, space_desc, guest_desc, other_desc) values ($1,$2,$3,$4,$5,$6,$7,$8,$8,$10)'
+  const query = 'INSERT INTO homes(title, is_entire_place, location, super_host_name, super_host_photo, rating, description, space_desc, guest_desc, other_desc) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)'
   pool.query(query, [req.body.title, req.body.is_entire_place, req.body.location, req.body.super_host_name, req.body.super_host_photo, req.body.rating, req.body.description, req.body.space_desc, req.body.guest_desc, req.body.other_desc])
     .then(() => {
       res.sendStatus(201);
-    });
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 });
 
 // app.put('/api/houses', (req, res) => {
