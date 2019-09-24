@@ -50,13 +50,13 @@ app.post('/api/houses', (req, res) => {
     });
 });
 
-app.put('/api/houses', (req, res) => {
-  const query = 'update from homes ';
-  pool.query(query)
-    .then(() => {
-      res.sendStatus(200);
-    });
-});
+// app.put('/api/houses', (req, res) => {
+//   const query = 'update from homes ';
+//   pool.query(query)
+//     .then(() => {
+//       res.sendStatus(200);
+//     });
+// });
 
 app.delete('/api/houses', (req, res) => {
   const id = req.params.id;
