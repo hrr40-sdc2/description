@@ -1,9 +1,18 @@
 const express = require('express');
 require('dotenv').config();
 var cors = require('./cors');
-
 const House = require('./../database/House.js');
 const Photo = require('./../database/Photo.js');
+const { Pool } = require('pg');
+const { username, password } = require('../config.js');
+
+const pool = new Pool({
+  host: 'localhost',
+  username,
+  password,
+  database: 'housemania',
+  port: 5432
+});
 
 const app = express();
 
@@ -13,6 +22,50 @@ app.use(express.json());
 app.use(express.static(__dirname + '/../client/dist'));
 // serve static image files in public if necessary
 app.use(express.static(__dirname + '/../public'));
+
+//postgreSQL
+app.get('/api/houses', (req, res) => {
+  const query = 'select * from homes, bedrooms, photos, amenities limit 1';
+  pool.query(query)
+    .then((data) => {
+      res.send(data).status(200);
+    });
+});
+
+app.get('/api/houses/:id', (req, res) => {
+  const id = req.params.id;
+  const query = `select * from homes where id = ${id}`;
+  pool.query(query)
+    .then((data) => {
+      console.log(data.rows[0]);
+      res.send(data.rows[0]).status(200);
+    });
+});
+
+app.post('/api/houses', (req, res) => {
+  const query = 'insert into homes(title, is_entire_place, location, super_host_name, super_host_photo, rating, description, space_desc, guest_desc, other_desc) values ($1,$2,$3,$4,$5,$6,$7,$8,$8,$10)'
+  pool.query(query, [req.body.title, req.body.is_entire_place, req.body.location, req.body.super_host_name, req.body.super_host_photo, req.body.rating, req.body.description, req.body.space_desc, req.body.guest_desc, req.body.other_desc])
+    .then(() => {
+      res.sendStatus(201);
+    });
+});
+
+// app.put('/api/houses', (req, res) => {
+//   const query = 'update from homes ';
+//   pool.query(query)
+//     .then(() => {
+//       res.sendStatus(200);
+//     });
+// });
+
+app.delete('/api/houses', (req, res) => {
+  const id = req.params.id;
+  const query = `delete from homes where id = ${id}`;
+  pool.query(query)
+    .then(() => {
+      res.sendStatus(200);
+    });
+});
 
 
 // API Endpoints
