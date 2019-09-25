@@ -26,11 +26,35 @@ app.use(express.static(__dirname + '/../public'));
 
 //postgreSQL
 app.get('/api/houses', (req, res) => {
-  const query = 'select * from homes, bedrooms, photos, amenities limit 1';
+  const bedQuery = `select * from bedrooms where bedrooms.guests = 6 limit 4`;
+  const amenityQuery = `select * from amenities limit 4`;
+  const photoQuery = `select * from photos limit 5`;
+  const query = 'select * from homes limit 1';
+  var house;
+
   pool.query(query)
     .then((data) => {
-      res.send(data).status(200);
-    });
+      // res.send(data.rows[0]).status(200);
+      house = data.rows[0];
+    })
+
+  pool.query(bedQuery)
+    .then((data) => {
+      house.bedrooms = data.rows;
+    })
+
+  pool.query(amenityQuery)
+    .then((data) => {
+      house.amenities = data.rows;
+    })
+
+  pool.query(photoQuery)
+    .then((data) => {
+      house.photos = data.rows;
+    })
+    .then(() => {
+      res.send(house).status(200);
+    })
 });
 
 app.get('/api/houses/:id', (req, res) => {
@@ -38,7 +62,6 @@ app.get('/api/houses/:id', (req, res) => {
   const query = `select * from homes where id = ${id}`;
   pool.query(query)
     .then((data) => {
-      console.log(data.rows[0]);
       res.send(data.rows[0]).status(200);
     });
 });
