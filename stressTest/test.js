@@ -3,9 +3,7 @@ import { check, sleep } from "k6";
 
 export let options = {
   stages: [
-
     { duration: "30s", target: 300  }
-
   ]
 };
 
