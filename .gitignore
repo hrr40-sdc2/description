@@ -37,9 +37,12 @@ __snapshots__
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Csvs
 houses.csv
 photos.csv
 rooms.csv
 amenities.csv
+
+# config files
 config.js
-newrelic.js
