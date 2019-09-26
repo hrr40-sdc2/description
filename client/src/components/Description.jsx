@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import sc from './styled/OverviewPart.jsx';
 import Badge from './icons/Badge.jsx';
 import $ from 'jquery';
+import faker from 'faker';
 
 
 const OverviewPart = sc.OverviewPart;
@@ -111,7 +112,7 @@ const ReadMore = styled.button`
 const Description = ({ house = {}}) => {
 
   // Amazon S3 is by default. Set to local if in Env settings
-  let s3 = process.env.S3_HOST || 'https://housemania-hr.s3-us-west-1.amazonaws.com';
+  // let s3 = process.env.S3_HOST || 'https://housemania-hr.s3-us-west-1.amazonaws.com';
 
   let room = {
     guest: 0,
@@ -121,21 +122,16 @@ const Description = ({ house = {}}) => {
   };
 
   const loadRoomUnitInfo = () => {
-    let units = house.private_room;
+    let units = house.bedrooms;
 
     if (units) {
-      room.guest = units.guest;
-      room.bath = units.bath;
-      if (units.bedrooms.length) {
-        room.bedroom = units.bedrooms.length;
-
-        room.bed = units.bedrooms.reduce((acc, bedroom) => {
-          return acc + bedroom.beds.length;
-        }, 0);
-      }
+      room.guest = units[0].guest;
+      room.bath = units[0].bath;
+      room.bedroom = units.length;
+      room.bed = faker.random.number({min:1, max: 3});
     }
 
-    //console.log('loaded room', room);
+    console.log('loaded room', room);
   };
 
   loadRoomUnitInfo();
@@ -166,7 +162,7 @@ const Description = ({ house = {}}) => {
       </TitleContainer>
 
       <HostContainer className="host-photo">
-        <HostPhoto src={s3 + '/photos/host/' + (house.super_host_photo || '/default.jpg')} />
+        <HostPhoto src={house.super_host_photo} />
         <div>{house.super_host_name}</div>
         <HostBadge>
           <Badge />
@@ -177,7 +173,7 @@ const Description = ({ house = {}}) => {
 
         <SummaryItem>
           <ItemIconContainer>
-            <ItemIcon src={s3 + '/icons/house-black-icon.png'} />
+            <ItemIcon src={faker.image.imageUrl()} />
           </ItemIconContainer>
           <ItemDetails>
             <PartHeader>Private room in house</PartHeader>
@@ -190,7 +186,7 @@ const Description = ({ house = {}}) => {
 
         <SummaryItem>
           <ItemIconContainer>
-            <ItemIcon src={s3 + '/icons/key-black-icon.png'} />
+            <ItemIcon src={faker.image.imageUrl()} />
           </ItemIconContainer>
           <ItemDetails>
             <PartHeader>Great check-in experience</PartHeader>
@@ -200,7 +196,7 @@ const Description = ({ house = {}}) => {
 
         <SummaryItem>
           <ItemIconContainer>
-            <ItemIcon src={s3 + '/icons/medal-black-icon.png'} />
+            <ItemIcon src={faker.image.imageUrl()} />
           </ItemIconContainer>
           <ItemDetails>
             <PartHeader>{house.super_host_name} is a Superhost</PartHeader>

@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 require('dotenv').config();
 var cors = require('./cors');
@@ -25,11 +26,32 @@ app.use(express.static(__dirname + '/../public'));
 
 //postgreSQL
 app.get('/api/houses', (req, res) => {
-  const query = 'select * from homes, bedrooms, photos, amenities limit 1';
-  pool.query(query)
-    .then((data) => {
-      res.send(data).status(200);
-    });
+  const bedQuery = `select * from bedrooms where bedrooms.guests = 6 limit 4`;
+  const amenityQuery = `select * from amenities limit 4`;
+  const photoQuery = `select * from photos limit 5`;
+  const query = 'select * from homes limit 1';
+  var house;
+
+    pool.query(query)
+      .then((data) => {
+        house = data.rows[0];
+        return pool.query(bedQuery)
+          .then((data) => {
+            house.bedrooms = data.rows;
+           return pool.query(amenityQuery)
+              .then((data) => {
+                house.amenities = data.rows;
+               return pool.query(photoQuery)
+                  .then((data) => {
+                    house.photos = data.rows;
+                  })
+              })
+          })
+      })
+      .then(() => {
+        res.send(house).status(200);
+      })
+
 });
 
 app.get('/api/houses/:id', (req, res) => {
@@ -37,17 +59,19 @@ app.get('/api/houses/:id', (req, res) => {
   const query = `select * from homes where id = ${id}`;
   pool.query(query)
     .then((data) => {
-      console.log(data.rows[0]);
       res.send(data.rows[0]).status(200);
     });
 });
 
 app.post('/api/houses', (req, res) => {
-  const query = 'insert into homes(title, is_entire_place, location, super_host_name, super_host_photo, rating, description, space_desc, guest_desc, other_desc) values ($1,$2,$3,$4,$5,$6,$7,$8,$8,$10)'
+  const query = 'INSERT INTO homes(title, is_entire_place, location, super_host_name, super_host_photo, rating, description, space_desc, guest_desc, other_desc) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)'
   pool.query(query, [req.body.title, req.body.is_entire_place, req.body.location, req.body.super_host_name, req.body.super_host_photo, req.body.rating, req.body.description, req.body.space_desc, req.body.guest_desc, req.body.other_desc])
     .then(() => {
       res.sendStatus(201);
-    });
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 });
 
 // app.put('/api/houses', (req, res) => {

@@ -193,32 +193,32 @@ const Banner = (props) => {
     <BannerContainer id="overview-house-banner" >
       <PhotosContainer className="photos-container" >
         <PrimaryPhotoContainer >
-          <PrimaryPhoto src={s3 + '/photos/house/' + photo1} data-id={1}
+          <PrimaryPhoto src={photo1} data-id={1}
             onMouseOver={zoomPhoto.bind(this)}
             onMouseOut={unzoomPhoto.bind(this)} ></PrimaryPhoto>
           <PhotoShadow className="photo-shadow" data-id={1} />
         </PrimaryPhotoContainer>
 
         <SecondaryPhotoContainer>
-          <SecondaryPhoto src={s3 + '/photos/house/' + photo2} data-id={2}
+          <SecondaryPhoto src={ photo2} data-id={2}
             onMouseOver={zoomPhoto.bind(this)}
             onMouseOut={unzoomPhoto.bind(this)} ></SecondaryPhoto>
           <PhotoShadow className="photo-shadow" data-id={2} />
         </SecondaryPhotoContainer>
         <SecondaryPhotoContainer>
-          <SecondaryPhoto src={s3 + '/photos/house/' + photo3} data-id={3}
+          <SecondaryPhoto src={photo3} data-id={3}
             onMouseOver={zoomPhoto.bind(this)}
             onMouseOut={unzoomPhoto.bind(this)} ></SecondaryPhoto>
           <PhotoShadow className="photo-shadow" data-id={3} />
         </SecondaryPhotoContainer>
         <SecondaryPhotoContainer>
-          <SecondaryPhoto src={s3 + '/photos/house/' + photo4} data-id={4}
+          <SecondaryPhoto src={photo4} data-id={4}
             onMouseOver={zoomPhoto.bind(this)}
             onMouseOut={unzoomPhoto.bind(this)} ></SecondaryPhoto>
           <PhotoShadow className="photo-shadow" data-id={4} />
         </SecondaryPhotoContainer>
         <SecondaryPhotoContainer>
-          <SecondaryPhoto src={s3 + '/photos/house/' + photo5} data-id={5}
+          <SecondaryPhoto src={photo5} data-id={5}
             onMouseOver={zoomPhoto.bind(this)}
             onMouseOut={unzoomPhoto.bind(this)} ></SecondaryPhoto>
           <PhotoShadow className="photo-shadow" data-id={5} />
