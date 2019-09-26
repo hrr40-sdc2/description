@@ -107,7 +107,7 @@ const SleepingArragement = (props) => {
     }
 
     // display only 4 at maximum
-    let bedrooms = props.private_room.bedrooms.slice();
+    let bedrooms = props.bedrooms.slice();
 
     return bedrooms.map((bedroom, ind) => {
       let beds = getBeds(bedroom);
