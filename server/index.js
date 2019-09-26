@@ -32,29 +32,26 @@ app.get('/api/houses', (req, res) => {
   const query = 'select * from homes limit 1';
   var house;
 
-  pool.query(query)
-    .then((data) => {
-      // res.send(data.rows[0]).status(200);
-      house = data.rows[0];
-    })
+    pool.query(query)
+      .then((data) => {
+        house = data.rows[0];
+        return pool.query(bedQuery)
+          .then((data) => {
+            house.bedrooms = data.rows;
+           return pool.query(amenityQuery)
+              .then((data) => {
+                house.amenities = data.rows;
+               return pool.query(photoQuery)
+                  .then((data) => {
+                    house.photos = data.rows;
+                  })
+              })
+          })
+      })
+      .then(() => {
+        res.send(house).status(200);
+      })
 
-  pool.query(bedQuery)
-    .then((data) => {
-      house.bedrooms = data.rows;
-    })
-
-  pool.query(amenityQuery)
-    .then((data) => {
-      house.amenities = data.rows;
-    })
-
-  pool.query(photoQuery)
-    .then((data) => {
-      house.photos = data.rows;
-    })
-    .then(() => {
-      res.send(house).status(200);
-    })
 });
 
 app.get('/api/houses/:id', (req, res) => {
