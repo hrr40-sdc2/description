@@ -1,6 +1,7 @@
 const { username, password } = require('../config.js');
 const { Pool } = require('pg');
-
+//look for optimization within the config
+//horizontal scale?
 const pool = new Pool({
   host: 'localhost',
   username,
